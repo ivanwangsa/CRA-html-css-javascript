@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <body onload="do_game()">
+        <script>
+            function do_game() {
+                colors = ["aqua", "black", "blueviolet", "darkcyan", "firebrick", "fuchsia", "green", "hotpink", "khaki", "magenta", "navy", "olivedrab", "plum", "skyblue", "turqoise"];
+                var target_index = Math.floor(Math.random() * colors.length);
+                target = colors[target_index];
+                var guessed = false;
+                var number_of_guess = 0;
+                
+                alert(target);
+                                
+                var prompt_message = "I am thinking of one of these colors: \n\n"
+                + colors.join(", ") + "\n\n What color am I thinking of?";
+                
+                while (!guessed) {
+                    var guess_input = prompt(prompt_message).toLowerCase();
+                    number_of_guess += 1;
+                    guessed = check_guess(guess_input);
+                }
+                
+                document.body.style.background = target;
+                
+                alert("Congratulations! You have guessed the color!\n\n"
+                + "It took you " + number_of_guess + " guesses to finish the game!\n\n"
+                + "You can see the colour in the background.");
+                
+            }
+            
+            function check_guess(guess_input) {
+                if (colors.indexOf(guess_input) < 0) {
+                    return false;
+                }
+                if (guess_input > target) {
+                    return false;
+                }
+                if (guess_input < target) {
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </body>
+</html>
+
